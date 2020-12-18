@@ -2,9 +2,9 @@
 const a = n => async m => new Promise( r => setTimeout(() => 
  r( console.log(n)) , m ));
 
-
 // const f =  (x) => (y) => {
    const arry = async(x,y) => [ await a(x)(y),await a(3)(y-2000),await a(4)(y-1000)]
+   const a = Promise.all([await fetchSomething(), await fetchSomething(), await fetchSomething()] // return 1
     // await arry.forEach(e => e);
   // }
   arry(5,5000)
