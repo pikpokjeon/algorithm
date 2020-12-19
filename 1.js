@@ -24,15 +24,13 @@ const moveTo = (num,currentPosition) =>remainStayPoints=> remainHistoryRoutes =>
     // console.log('remainStayPoints',remainStayPoints(stayPoint,storageOfMovement))
     console.log('remainStayPoints',new Set(remainStayPoints(stayPoint,storageOfMovement)))
 
-    const moveLog =remainStayPoints(stayPoint,storageOfMovement);
-    // const moveLog = new Set(remainStayPoints(stayPoint,storageOfMovement));
+    // const moveLog =Array.from(remainStayPoints(stayPoint,storageOfMovement));
+    const moveLog = new Set(remainStayPoints(stayPoint,storageOfMovement));
     let count = []
-    for ( let i = 0; i <moveLog.length ; i ++)
-    {
 
-      console.log(moveLog[i].map( e => moveLog[0] === e[0]))
+      console.log(Array.from(moveLog).map( e => (e = `move:${  [e[0],e[1]]  }`) ))   
       
-    }
+  
 
     console.log("stayPoint :",stayPoint)
     return currentPosition
