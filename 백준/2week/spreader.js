@@ -11,7 +11,7 @@
       console.log(a)
 
     }
-    ​
+    ​array.splice()
     function removeItem(array, action) {
         const b =  [...array.slice(0, action.index), ...array.slice(action.index + 1)]
       console.log(b)

@@ -13,6 +13,3 @@ var input = fs
   .readFileSync("/dev/stdin")
   .toString()
   .split(" ")
-  .map(function(a) {
-    return +a
-  })
