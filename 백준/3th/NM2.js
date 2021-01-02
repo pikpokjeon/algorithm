@@ -25,9 +25,8 @@ const back = (arr) =>
     }
     for(let i = Math.max.apply(null, a); i < n+1 ; i++)
     {
-         if(!a[i])
+         if(!a[i] && i !== 0)
         {
-            console.log(i)
             a[i] = i
             arr.push(i)
             back(arr)
@@ -39,7 +38,6 @@ const back = (arr) =>
 
             // break
         }
-        console.log(a)
     }
 
 
