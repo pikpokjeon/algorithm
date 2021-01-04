@@ -18,7 +18,6 @@ let n = Number(input1[0])
 input1.shift()
 let t =[]
 let p =[]
-console.log(n)
 let input = input1.map(e => e.split(' '))
 input.map( e => {
     t.push(Number(e[0]));
