@@ -2,19 +2,19 @@
 
 const input1 =
     `10
-1 1
-1 2
-1 3
-1 4
-1 5
-1 6
-1 7
-1 8
-1 9
-1 10`.split('\n')
+5 50
+4 40
+3 30
+2 20
+1 10
+1 10
+2 20
+3 30
+4 40
+5 50`.split('\n')
 
 
-let n = Number(input1[0])
+let num = Number(input1[0])
 input1.shift()
 let t =[]
 let p =[]
@@ -23,57 +23,66 @@ input.map( e => {
     t.push(Number(e[0]));
     p.push(Number(e[1]));
 })
-let arr = Array.from(Array(n).keys()).map(e => e+1)
-let  obj= {}
-// console.log(memo)
+let n = Array.from(Array(num).keys()).map(e => e+1)
+let s = new Array(num).fill(-1)
+console.log(n)
 
-console.log(arr)
-let used = new Array(n).fill(0)
-let maxmoney = 0
-// for(let i = n; i<= n; i--)
-// {
-//     if(arr[i]+t[i] > n)
-//     {
-//         t.pop()
-//         arr.pop()
-//     }
-// }
-
-const pi = (day,d,sum,price) => 
+const bb = (num,i,s) => 
 {
-    if(sum > n) return
-
-    for(let i = 0; i < arr.length -2; i++)
+    let sum = 0
+    for(let k= 1; k <= num; k++)
     {
-        day[i+t[i]] = price  + p[sum]
-        sum += t[i]
-        price = price + p[i]
-        d += t[i]
-        console.log(t[i])
-        console.log(day,sum,price,d)
-
+        sum += s[i+k]
+        console.log(sum,s)
     }
-    if(sum > n) return
-
-    pi(day,d,sum,price)
-
-    
-
+    return sum
 }
-// let a ={}
-// a[3] =2
-// console.log(Object.keys(a).length)
-pi({},0,0,0)
-// console.log(n,arr,p)
-const go = (n,money,day) =>
+
+const goin = (num,t,s,p,bb) => 
 {
+    let day = 0
 
-    // for (let i in t) {
-    //     memo[i] = 0
-    // }
+    console.log('start')
+    
+    for(let i=num-2; i > -1; i --)
+    {
+        let idx = 0;
+        console.log(i,num)
+        s[num-1] = p[num-1]
+        if(day > num) return 
+        if(t[num-1] === 1)
+        {
+            s[i] += p[i]
+            console.log('1',day)
+            day += 1
+        }
+
+        else if(t[i]+i > num )
+        {
+            s[i] = s[i+1] + s[i] 
+            day +=1
+            console.log('2',day)
+
+        }
+        else if(i + t[i] === num)
+        {
+            s[i] = s[i+1] + p[i]
+            day += 1 
+            console.log('3',day)
+        }
+        else if (day<=num)
+        {
+            idx = i+t[i] -1
+            let d = p[i] < bb(t[i], i, s) ? 0 : p[i]
+            s[i] = s[i+1] + d
+            day +=1
+            console.log('4',day,t[i])
+
+
+        }
+    }
 }
 
-go(0,1,0)
-// console.log(used)
-// console.log(maxmoney)
 
+goin(num,t,s,p,bb)
+console.log(s)
