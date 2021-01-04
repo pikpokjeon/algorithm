@@ -17,6 +17,7 @@ const arr2 = Array.from(Array(input).keys()).map(e => Number(e+1))
 let ac = 1
 const gogo = (n) =>
 {
+        if(n === 0) return 1
         if(n < 2) return n
         return gogo(n-1) * n
     
