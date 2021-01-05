@@ -15,8 +15,6 @@
 // 경우의 수가 많아 질 수 있으므로, 경우의 수를 1,000,000,007으로 나눈 나머지를 return해주세요.
 function solution(n) {
     var answer = 0;
-    // if (n<2) return 1
-    // return solution(n-1) + solution(n-2)
     let a = [0,1,1]
     for(let i = 1; i <= n; i ++)
         {
@@ -29,8 +27,4 @@ function solution(n) {
 }
 
 
-// for(let i = 0; i<15; i++)
-// {
    solution(10000)
-
-// }
