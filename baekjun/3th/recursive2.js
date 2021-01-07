@@ -13,7 +13,6 @@ const input1 =
 4 40
 5 50`.split('\n')
 
-
 let num = Number(input1[0])
 input1.shift()
 let t =[]
@@ -41,45 +40,26 @@ const bb = (num,i,s) =>
 const goin = (num,t,s,p,bb) => 
 {
     let day = 0
-
+    
+ 
     console.log('start')
     
-    for(let i=num-2; i > -1; i --)
+    for(let i=num-1; i > -1; i --)
     {
-        let idx = 0;
-        console.log(i,num)
-        s[num-1] = p[num-1]
-        if(day > num) return 
+        let lastday = i + t[i]
+        let pp = p[i+1] ? p[i]+p[i+1] : p[i]
+        let ss = s[i+1] ? s[i+1] : s[i]
         if(t[num-1] === 1)
         {
-            s[i] += p[i]
-            console.log('1',day)
-            day += 1
+            s[i] = p[i]
         }
-
-        else if(t[i]+i > num )
+        else if(pp > s[i+1])
         {
-            s[i] = s[i+1] + s[i] 
-            day +=1
-            console.log('2',day)
-
+            s[i] += p
         }
-        else if(i + t[i] === num)
-        {
-            s[i] = s[i+1] + p[i]
-            day += 1 
-            console.log('3',day)
-        }
-        else if (day<=num)
-        {
-            idx = i+t[i] -1
-            let d = p[i] < bb(t[i], i, s) ? 0 : p[i]
-            s[i] = s[i+1] + d
-            day +=1
-            console.log('4',day,t[i])
-
-
-        }
+        else if(pp < s[])
+        
+      
     }
 }
 

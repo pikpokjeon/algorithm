@@ -21,7 +21,7 @@ const fs = require('fs')
 const input = 26
 console.log(arr)
 const func = (n, arr) => {
-    
+
     // for(let i = 0; i < n; i ++)
     {
         if(arr[] === 1) return
@@ -38,5 +38,15 @@ const func = (n, arr) => {
     return arr
 }
 
+
+const fibo = (n) =>
+{
+    if(n === 0) return 0
+    if(n < 2) return 1
+    return fibo(n-1) + fibo(n-2)    
+}
+
+
+console.log(fibo(17))
 
 console.log(func(input, arr))
