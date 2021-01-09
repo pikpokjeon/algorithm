@@ -24,7 +24,7 @@ const func = (n, arr) => {
 
     // for(let i = 0; i < n; i ++)
     {
-        if(arr[] === 1) return
+        if(arr[n] === 1) return
 
         if (!func(n) & 1) //짝수일 때
         {
