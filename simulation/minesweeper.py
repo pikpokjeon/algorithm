@@ -66,4 +66,4 @@ def countStar():
     print(count)
 
 findZero()
-# pprint(mp, width = N *10)
+pprint(mp, width = N *10)
