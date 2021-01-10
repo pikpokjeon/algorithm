@@ -23,7 +23,8 @@
 
 # 출력
 # 첫째 줄에 묻혀있을 수 있는 지뢰의 최대 개수를 출력한다.
-
+import sys
+sys.stdin = open('input.txt', 'r')
 from pprint import pprint
 
 N = int(input())
