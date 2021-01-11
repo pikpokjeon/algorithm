@@ -128,7 +128,7 @@ const randomFunc = (init, arr, n, i, bigger) => {
 const check = (arr, n) =>{
     if (n === 5 )
     {
-    if(arr[n] === 6) return 1
+        if(arr[n] === 6) return 1
     return 0 
     }
     

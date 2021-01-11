@@ -13,15 +13,13 @@ const arr = Array.from(Array(input).keys()).map(e => e+1).reduce((ac,curr) => ac
 
 // console.log(arr)
 
-const arr2 = Array.from(Array(input).keys()).map(e => Number(e+1))
+const arr2 = Array.from(Array(input).keys()).map(e => Number(e+))
 let ac = 1
 const gogo = (n) =>
 {
         if(n === 0) return 1
-        if(n < 2) return n
+        if(n < 2) return n1
         return gogo(n-1) * n
-    
-
 }
 // gogo(n) 이 factorial(n)을 리턴하는 재귀함수로 구현하세요,
 gogo(1)

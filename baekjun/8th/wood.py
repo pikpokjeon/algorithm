@@ -35,7 +35,6 @@ def do (arr, i):
         a = arr[2]
         b = arr[3]
         arr[3] = a
-
         arr[2] = b
         print (" ".join(map(str,arr)))
 

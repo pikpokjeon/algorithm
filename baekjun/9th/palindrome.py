@@ -15,7 +15,6 @@
 # 각 줄마다 주어진 수가 팰린드롬수면 'yes', 아니면 'no'를 출력한다.
 
 
-end = 1
 arr = []
 while 1:
     tmp = input()
@@ -28,5 +27,3 @@ for a in arr:
     else: print('no')
 # 다른경우 no
 # 맞은경우 yes
-
-print(arr)

@@ -20,7 +20,7 @@ def push ():
     for y in range(N):
         for x in range(N-1,-1,-1):
             if 0 <= x < N:
-            
+                
                 if  arr[y][x] == arr[y][x-1]:
                     arr[y][x] = arr[y][x-1] + arr[y][x]
                     arr[y][x-1] = 0

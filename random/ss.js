@@ -7,11 +7,11 @@ function solution(strings, n) {
     let arry = []
     
     return arry.sort()
-  }
+  }  
 
   answer = match(strings)(n)(getAString)
   // console.log(answer)
-  return answer;
+    return answer;
 }
 
 console.log(solution(["abce", "abcd", "cdx"], 2))
