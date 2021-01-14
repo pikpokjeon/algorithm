@@ -24,13 +24,31 @@
 # 10보다 작은경우 값에서 +2를 해준다
 # 10 이 넘은 경우, +11을 해준다
 
-def l (num):
-    print(num)
-    if num > 10000: return
-    if num < 10:
-        l(num+2)
-    elif 20> num > 10:
-        l(20)
-    elif num>= 20:
-        l(num+11)
-l(1)
+# def l (num):
+#     print(num)
+#     if num > 10000: return
+#     if num < 10:
+#         l(num+2)
+#     elif 20> num > 10:
+#         l(20)
+#     elif num>= 20:
+#         l(num+11)
+# l(1)
+# 재귀로 풀어본다
+# 숫자의 자리수를 더해줘서 풀어본다
+
+
+def d(n):
+    init_n = n
+    my_lst = []
+    result = 0
+    nam = 10005
+    while nam > 9:
+        my_lst.append(n % 10)
+        nam = n // 10
+        n = nam
+    my_lst.append(nam)
+    for i in my_lst:
+        result += i
+    return result+init_n
+
