@@ -26,7 +26,7 @@ for y in range(N):
         if MAP[y][x] == 'X':
             XX += 1
             MAP[y][x] = XX
-    if MAP[y].index('X')>-1:
+    if MAP[y].index('X') > -1:
         Y.append([y,MAP[y].index('X')])
 
     # if MAP[y]
