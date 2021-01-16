@@ -22,6 +22,7 @@ let input = `2
 10 10 1
 5 5`.toString().split('\n')
 
+
 const mv = [[0,1],[0,-1],[1,0],[-1,0]]
 const TC = Number(input.shift())
 for (const tc of Array(TC)) {
@@ -33,7 +34,7 @@ for (const tc of Array(TC)) {
         board[y][x] = 1
     }
     let count = 0
-    let visit = Array(N+1).fill([]).map( _ => [...new Array(M+1).fill(0)])
+    let visit = Array(N).fill([]).map( _ => [...new Array(M).fill(0)])
     const bfs = (s) => 
     {
         let q = [s]
