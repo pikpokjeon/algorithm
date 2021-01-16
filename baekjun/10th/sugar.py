@@ -15,7 +15,7 @@
 
 from itertools import combinations
 # 배달 키로수
-# N = int(input())
+N = int(input())
 # five = 0
 # frest = 0
 # tree = 0
@@ -43,27 +43,27 @@ from itertools import combinations
 # print(result)
 
 # 저 배열의 원소로만  더해서 N이 되도록 배열을 만들어 본다
-# def Run (arrK, target, parts=[], sum=0):
-#     if sum == target:
-#         yield  parts
-#     if sum >= target: return 
-#     for i,val in enumerate(arrK):
-#         remains = arrK[i + 1:]
-#         yield from Run(remains,target,parts+[val], sum+val)
+def Run (arrK, target, parts=[], sum=0):
+    if sum == target:
+        yield  parts
+    if sum >= target: return 
+    for i,val in enumerate(arrK):
+        remains = arrK[i + 1:]
+        yield from Run(remains,target,parts+[val], sum+val)
 
-# a = list(Run([5,3],N))
-# print(a)
+a = list(Run([5,3],N))
+print(a)
 
-N = int(input())
-dibi = N // 5
-N %= 5
-res = 0
-while dibi > -1:
-    if N % 3 == 0:
-        res = N // 3
-        N = N % 3
-        break
+# N = int(input())
+# dibi = N // 5
+# N %= 5
+# res = 0
+# while dibi > -1:
+#     if N % 3 == 0:
+#         res = N // 3
+#         N = N % 3
+#         break
     
-    dibi -= 1
-    N += 5
-print((N==0) and (res+dibi) or -1)
+#     dibi -= 1
+#     N += 5
+# print((N==0) and (res+dibi) or -1)
