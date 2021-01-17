@@ -9,6 +9,8 @@
 print(ord(u"a"))
 print(ord(u"A"))
 
+# 해쉬맵 문제
+
 # 문자열을 소문자로 하고 쏘팅 
 # (사실 대문자로 출력해야해서 대문자로 바꾸는게 옳다)
 # 쏘팅도 사실 필요가 없다
@@ -35,7 +37,7 @@ for character in S:
     if character in D.keys():
         D[character] += 1
     else:
-        # 만약 알파벳이 있는데 딕셔너리에 추가 안된경우
+        # 만약 알파벳이 있는데 딕셔너리에 추가 안된경우 !!
         # 존재하니 1로 초기화해준다
         D[character] = 1
 
