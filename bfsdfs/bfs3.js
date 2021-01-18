@@ -29,7 +29,7 @@ const bfs = (start) =>
             if ( my < 0 || mx < 0 || my > N -1 || mx > M -1) continue
             if ( visit[my][mx] > 0 ) continue
             if ( board[my][mx] === 0) continue
-            visit[my][mx] = visit[y][x] + 1
+            visit[my][mx] = visit[y][x] + 1 // 갈 수 있는 모든 지점에 대한 최단거리
 
             q.push([my,mx])
         }
