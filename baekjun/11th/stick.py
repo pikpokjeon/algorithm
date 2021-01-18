@@ -21,7 +21,7 @@ def jegui (s):
  
     if total - temp >= X: # 만약, 위에서 자른 막대의 절반 중 하나를 버리고 남아있는 막대의 길이의 합이 X보다 크거나 같다면,
         stick.append(temp) # 위에서 자른 막대의 절반 중 하나를 버린다.
-    else:
+    else: # 합이 적다면 막대를 가지고 있는다
         stick.append(temp)
         stick.append(temp)
 
