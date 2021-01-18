@@ -1,0 +1,1 @@
+https://mingrammer.com/translation-iterators-vs-generators/
