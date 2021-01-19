@@ -1,5 +1,5 @@
 const fs = require('fs')
-let [N, K] = `10 25`.toString().split(' ').map(e => Number(e))
+let [N, K] = `5 17`.toString().split(' ').map(e => Number(e))
 
 // 이동 배열을 만든다
 // const mv = ['-1','+1','*2']

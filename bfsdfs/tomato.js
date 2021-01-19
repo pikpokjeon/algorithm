@@ -1,10 +1,8 @@
 
 
-let input = `6 4
-1 -1 0 0 0 0
-0 -1 0 0 0 0
-0 0 0 0 -1 0
-0 0 0 0 -1 1`.toString().split('\n')
+let input = `2 2
+1 -1
+-1 1`.toString().split('\n')
 
 // 가로 M / 세로 N
 
@@ -20,30 +18,33 @@ let day = 0
 const mv = [[0,1],[0,-1],[1,0],[-1,0]]
 // 먼저 1을 찾아서 동시에 bfs를 돌린다
 // 0의 위치를 찾아서 bfs를 돌리지만, 사방이 막혀있는 경우 바로 -1 출력
-const bfs = (s,c) =>
+// 익지 못하는 토마토를 감지한다
+let isTomatoIsolated = false
+let isTomatoAllFresh = false
+const bfs = (s) =>
 {
-    let q = [s]
-    visit[s[0]][s[1]] = 1
+    let q = [...s]
+    for (const c of s) {
+        let [ty, tx] = c
+        visit[ty][tx] = 1
+    }
     while(q.length)
     {
-        let depth = 0
         let [y,x] = q.shift()
         for(const delta of mv)
         {
-            depth+=1
             let [dx,dy] = delta
             let [mx, my] = [dx+x, dy+y]
             if(mx < 0 || my < 0 || mx> M-1 || my > N-1) continue
-            if(board[my][mx] < 0) continue
             if(visit[my][mx] > 0) continue
             q.push([my,mx])
             visit[my][mx] = visit[y][x] + 1
             count = visit[my][x]
-            console.log(visit)
 
         }
         
     }
+    visit.map(e => console.log(e.join(' ')))
     
 }
 let al = []
@@ -58,26 +59,40 @@ for(let y = 0; y < N; y++)
         {
            al.push([y,x]) 
         tomato +=1
-        // bfs([y,x],count)
     }
     }
 }
 
-// for(let _ = 0; _ < all.length; _ ++)
-// {
-// console.log((count+1)/2, al.length, count)
-// }
-// let funcArry = Array(al.length).fill(bfs())
-// Promise.all(al.map( e => bfs(e,count)))
-// let ex = [bfs(al[0],count),bfs(al[1],count)]
-// console.log(al)
+bfs(al)
+let y = visit.map( e => [...e].join('')).join('')
+if (!y.includes(0))
+{
+    isTomatoAllFresh = true
+    console.log(0)
+
+
+}
+let asw = visit.map( e => e.map( e => {if(e > day) day = e}))
+if(!isTomatoIsolated)
+{
+    console.log(day-1)
+
+}
+
 // 모두 익으면 0 출력 
 
 // 모두 익지 못하면 -1 출력
 
-setTimeout(() => {
-    bfs(al[0],count)
-  }, 0);
-  setTimeout(() => {
-    bfs(al[1],count)
-  }, 0);
+// setTimeout(() => {
+//     bfs(al[0],count)
+//   }, 0);
+//   setTimeout(() => {
+//     bfs(al[1],count)
+//   }, 0);
+
+
+
+// console.log(`\\    /\\
+//  )  ( ')
+// (  /  )
+//  \\(__)|`)
