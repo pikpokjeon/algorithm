@@ -107,32 +107,25 @@ for(let h = 0; h < H; h ++)
             {
                 all.push([h,y,x])
             }
-            if(board[h][y][x] === 0)
-            {
-                visit[h][y][x] = 0
-            }
+
         }
     }
 }
 search(all)
 
-const total = visit.flatMap( e => e.flatMap( _ => _))
-const initArry = board.flatMap( e => e.flatMap( _ => _))
-const isZero = total.find( e => e === 0)
-const maxDay = Math.max.apply(null, total)
-let minus = 0
-let one = 0
-board.flatMap( e => e.flatMap( _ => _)).map( i => {if(i === 1)one += 1;if(i === -1)minus +=1})
-
-if(isZero !== undefined)
+let maxcount = 0
+for(let k= 0; k < H ;k ++)
 {
-    console.log(-1)
+    for(let i = 0 ; i < N; i ++)
+    {
+        for(let j = 0; j < M; j++)
+        {
+            if(visit[k][i][j] === -1 && board[k][i][j] === 0)
+            {
+                return console.log( -1)
+            }
+            if ( visit[k][i][j] > maxcount) maxcount = visit[k][i][j]
+        }
+    }
 }
-else if (minus + one === initArry.length)
-{
-    console.log(0)
-}
-else
-{
-    console.log(maxDay - 1)
-}
+console.log(maxcount -1)
