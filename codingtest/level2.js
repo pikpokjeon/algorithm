@@ -34,12 +34,12 @@ function solution(n) {
         // (마지막에 나눈 값을 찾기위한 연산을 해준다!!!)
         // 틀린 이유 -> (a[i] + a [i-1]) %1234567  
         // 위와 같이 연산하면, bigInt 를 사용해야 한다.
+        
+        // 다음 값을 알기위한 점화식
         a[i+1] = a[i] + a [i-1] %1234567 
-        console.log(a)
     }
     answer = a[n] %  1234567
     return answer;
 }
 
-console.log(solution(200) ) //2
-// console.log(solution(5))  //5
+console.log(solution(200))
