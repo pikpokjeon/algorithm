@@ -49,10 +49,8 @@ for (let i = 2; i < n; i++)
 // 각 케이블들의 가능한 나눔의 수를 배열에 추가해보며 11이 되었을 때 반복을 중단한다
 let visit = Array.from(Object.values(cases)).map( e => e.map( a => -1))
 
-// let visit = Object.fromEntries(cases)
-// console.log('visit',visit)
-let min = 0
 
+// 백트레킹
 const back = (arr,i,now) =>
 {
 
@@ -60,32 +58,35 @@ const back = (arr,i,now) =>
     {
         let sums =  arr.reduce((a,b) => a + b)
         if( sums === 11 && arr.length ===k){
-            let store = []
-            let kk = []
-            let av = 0
-            let flag = false
+            let store = [] // 조합으로 나누었을 때 각 케이블의 길이
+            let kk = [] // 첫번째 자리수 저장
+            let av = 0 // 자리수가 같은지 비교하기 위한 변수
+            let flag = false // 자리수가 다르면 반복을 멈추게 함
             for(let i = 0; i < arr.length; i++)
             {
+                // 첫번째 자리수를 저장한다
                 let a = Math.floor(cables[i]/arr[i]).toString()[0]
                 kk.push(a)
+                // 조합으로 나누었을 때 각자 케이블의 최소 길이 저장
                 store.push(Math.floor( cables[i]/arr[i]))
 
             }
-            console.log(arr,store,'-------',sums)
             
-
+            // 나누었을 때 요소들의 조합들이 같은 사이즈 내에 있는지 확인
             for(let j = 0; j < kk.length; j ++)
             {
                 if(av === 0) av = kk[j]
                 if(av !== kk[j])
                 { 
+                    // 자리수가 바로 다르면 멈춘다
                     flag = false
                     break
                 }
                 if(av === kk[j] && kk[j] === kk[0]) {
                     av = kk[j], flag =true
                 }
-
+                // 반복 마지막 부분에서 모든 자리수가 같다면,
+                // 나누었을 때 비슷한 사이즈의 조합들을 찾고 가장 작은 요소를 찾는다.
                 if(j === kk.length-1 && flag)
                 {   console.log('|------------------------------------------------------------|')
                     console.log('802cm 랜선에서 4개, 743cm 랜선에서 3개, 457cm 랜선에서 2개, \n539cm 랜선에서 2개를 잘라내 모두 11개를 만들 수 있다.')
@@ -102,22 +103,24 @@ const back = (arr,i,now) =>
 
 
     }
-    // if(i === k) return console.log('finish----->',arr)
+    // 케이블을 자를 수 있는 경우의 수를 이용하여 백트래킹을 시작한다
     for(const [key,val] of Object.entries(cases))
     {
         
-    
+        // 현재 케이블과 같다면
         if(now == key)
-        {        
+        {   
+            // 모든 가능한 경우의 수를 시험해본다.
             for(let o = 0; o < val.length -1; o ++)
             {
-
+                // 사용하지 않은 경우의 수를 선택한다
                 if(visit[i][o] < 0 )
                 {
 
-                    
+                    // 방문배열에 사용한 경우의 수를 저장해준다
                     visit[i][o] === val[o]
                     arr.push(val[o])
+                    // 다음 케이블로 이동한다.
                     back(arr,i+1,cables[i+1])
                     arr.pop()
                     visit[i][o] === -1
