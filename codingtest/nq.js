@@ -1,6 +1,6 @@
 
 
-let M = 8
+let M = 4
 
 //앤퀸이 놓인자리
 let visit = Array(M+1).fill(-1)
@@ -23,10 +23,11 @@ const visitArry = (arr, i,n) =>
     }
     return arr
 }
+let k = 0
 const go = (n,visit,arr,count) =>
 {
-    console.log(n)
-    if(arr.length > M)
+    // console.log(n)
+    if(arr.length >= M)
     {
         count +=1
 
@@ -38,21 +39,22 @@ const go = (n,visit,arr,count) =>
     let check = Array(M+1).fill(-1)
     for(let k = 1; k <= M; k++)
     {
-        let v = visitArry(check,k,n)
-        console.log(v)
+
+        let v = visitArry(check,k,n+1)
         visit = v
-        console.log(visit)
         if(visit[k] < 0)
         {
-            console.log('Possible Number ------:', k)
+            console.log(n,count,'Possible Number ------:', k)
             if(v[k] < 0)
             {
+                console.log('Entered!')
                 
                 visit[k] = v[k]
                 arr.push(k)
                 // console.log('arr:',arr)
 
-                v = visitArry(v,k,n)
+                visitArry(v,k,n+1)
+                visit = v
                 go(n+1,v,arr,count)
             }
         }

@@ -60,6 +60,7 @@ function solution(tickets) {
                             const to = arr[i][1]
                             const idx = arr[i][2]
                             result = [to,idx]
+                            
                             console.log('else result : ',result)
                             break
                         }

@@ -22,33 +22,8 @@ const least = sums/n
 const bs = (arr,maxNum) =>
 {
    let start = 0, end = maxNum
-   let found = false
-   while(start<= end || !found)
-   {
-      const mid = Math.floor((start+end)/2)
-      let count = 0
-      let flag = false
-      arr.forEach( e => 
-         {   
-            let dividedBy = (e/(maxNum-mid))
-            let checkValidSize = dividedBy * (maxNum-mid)
-            if( checkValidSize === e) {
-               count += Math.floor(e/(maxNum-mid))
-            }
-            else {
-               flag = true
-            }
-            
-         })
-      if(flag)
-      {
-         end = mid
-         continue
-      }
-      if(count === n && !flag) return console.log(maxNum-mid)
-      else if(count < n ) start = mid
-      else if(count > n) end = mid
-   }
+  
+   
 }
 
 bs(cables,least)

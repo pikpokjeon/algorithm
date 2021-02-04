@@ -15,7 +15,7 @@
 
 from itertools import combinations
 # 배달 키로수
-N = int(input())
+# N = int(input())
 # five = 0
 # frest = 0
 # tree = 0
@@ -34,6 +34,9 @@ N = int(input())
 
 
 
+
+
+
 # nums = [5,3]*5
 # range(start, stop, step) step 은 간격
 # result = [ n for i in range(len(nums),0,-1) for n in combinations(nums,i) if sum(n) == N]
@@ -43,27 +46,37 @@ N = int(input())
 # print(result)
 
 # 저 배열의 원소로만  더해서 N이 되도록 배열을 만들어 본다
-def Run (arrK, target, parts=[], sum=0):
-    if sum == target:
-        yield  parts
-    if sum >= target: return 
-    for i,val in enumerate(arrK):
-        remains = arrK[i + 1:]
-        yield from Run(remains,target,parts+[val], sum+val)
+# def Run (arrK, target, parts=[], sum=0):
+#     if sum == target:
+#         yield  parts
+#     if sum >= target: return 
+#     for i,val in enumerate(arrK):
+#         remains = arrK[i + 1:]
+#         yield from Run(remains,target,parts+[val], sum+val)
 
-a = list(Run([5,3],N))
-print(a)
+# a = list(Run([5,3],N))
+# print(a)
 
-# N = int(input())
-# dibi = N // 5
-# N %= 5
-# res = 0
-# while dibi > -1:
-#     if N % 3 == 0:
-#         res = N // 3
-#         N = N % 3
-#         break
+
+# 11
+N = int(input())
+# 2
+dibi = N // 5
+# 1
+N %= 5
+res = 0
+while dibi > -1:
+    if N % 3 == 0:
+        res = N // 3
+        N = N % 3
+        break
     
-#     dibi -= 1
-#     N += 5
-# print((N==0) and (res+dibi) or -1)
+    dibi -= 1 # 5를 내려놓는다.
+    N += 5
+print((N==0) and (res+dibi) or -1)
+
+#  dp로 풀 수 있다.
+
+# while, recursive 같은 경우에는
+# 종료 조건을 직접 설정해 줘야 한다. -> 귀찮다
+# + 위험하다
