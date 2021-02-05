@@ -101,11 +101,11 @@ function solution(files) {
         }
         // console.log(r)
 
-    newstr = Object.fromEntries(Object.entries(newstr).sort((a,b) => 
-    {
-        if( a[0].toLowerCase() == b[0].toLowerCase()) return 0
-        else return -1
-    }))
+    // newstr = Object.fromEntries(Object.entries(newstr).sort((a,b) => 
+    // {
+    //     if( a[0].toLowerCase() == b[0].toLowerCase()) return 0
+    //     else return -1
+    // }))
     let resultArry = []
 
     for(const [key,value] of Object.entries(newstr))
@@ -127,13 +127,14 @@ function solution(files) {
         }
 
     }
-    // console.log(newstr)
+    console.log(newstr)
     console.log('정답 : ',resultArry)
 
     return answer;
 }
 const f = [["F-5 Freedom Fighter", "B-50 Superfortress","A-10 Thunderbolt II", "F-14 Tomcat"],
             ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"],
-            ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"],
+            ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF","B-50 Superfortress","A-10 Thunderbolt II", "F-14 Tomcat", "img2.JPG"],
+            // ['f5f', 'f51', 'a-1034592894892348928394928342394892384928394892384923948a'],
         ]
 f.forEach(e => solution(e))
