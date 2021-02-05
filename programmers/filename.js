@@ -60,25 +60,46 @@ function solution(files) {
     for(let i = 0;  i < s.length; i ++)
         {
             //특수 문자 상관 없어서 .replace('-','') 이부분 뺌
-            const n = s[i][0].includes('-') ? s[i][0]: s[i][0]  
-            if(!newstr[n]) 
+            let n = s[i][0].includes('-') ? s[i][0]: s[i][0]  
+            let temp = n.toLowerCase()
+            if(!newstr[n] || !newstr[temp]) 
             {
-                newstr[n] = []
+                !newstr[n]? newstr[n] = [] : null
+                !newstr[temp]? newstr[temp] = [] : null
             }
             let tempNum = []
          for(let k = 0;  k < s[i].length; k ++)
          {
             if(Number(s[i][k]) > -1) tempNum.push((s[i][k]) )
          }
+
             const fv = tempNum.join('')
 
-            if(fv[0] === '0')newstr[n].push(fv)
-            else {newstr[n].push(Number(fv))}
+
+
+            if(n.toLowerCase() !== n) //대문자의 경우
+            {   
+                
+                if(fv[0] === '0')newstr[n].push(fv),newstr[temp].push(fv)
+                else {
+                    newstr[n].push(Number(fv)),newstr[temp].push(Number(fv))
+                }
+            }else
+            {
+                if(fv[0] === '0')newstr[n].push(fv)
+                else {
+                    newstr[n].push(Number(fv))
+                }
+            }
+
+
+            // console.log(fv)
             newstr[n].sort((a,b) => a-b)
             r[i].push(fv)
+            // console.log(r,newstr)
 
         }
-        console.log(r)
+        // console.log(r)
 
     newstr = Object.fromEntries(Object.entries(newstr).sort((a,b) => 
     {
@@ -91,19 +112,28 @@ function solution(files) {
     {
         for(const num of value)
        { 
+        //    console.log(num)
            let comp = ''
-           comp += key+num
-           r.forEach( e => {if(e[e.length-1] === num.toString()){ e.pop(); comp = comp + gap + e.join(' ')}})
-           console.log(r[r.length-1], num.toString())
-            resultArry.push(comp)
-
+           let upper = key.toUpperCase()
+        //    console.log(newstr[upper][newstr[upper].indexOf(num)])
+           if(newstr[upper].includes(num) ) comp += upper + num, delete newstr[upper][newstr[upper].indexOf(num)]
+           else { comp += key+num} 
+           if(num)
+           {
+           r.forEach( e => {if(e[e.length-1] === num.toString()){ e.pop(); comp = comp + gap + e.join(' ');resultArry.push(comp)
+        }})
+        //    console.log(r[r.length-1], num.toString(),'dddd')
+           }
         }
 
     }
+    // console.log(newstr)
     console.log('정답 : ',resultArry)
 
     return answer;
 }
 const f = [["F-5 Freedom Fighter", "B-50 Superfortress","A-10 Thunderbolt II", "F-14 Tomcat"],
-            ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"]]
+            ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"],
+            ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"],
+        ]
 f.forEach(e => solution(e))
