@@ -1,6 +1,6 @@
 function solution (s)
 {
-   const getMax = (arr) => Math.max.apply(null,arr)
+   const getMax = (arr) => {const m =  Math.max.apply(null,arr); return m > 0 ? m : 1}
    let [odd,even] = [[],[]]
    const n = s.length
 
@@ -22,11 +22,12 @@ function solution (s)
    }
    const oddCases = odd.map(e => (go(1,e,0,0) * 2) + 1)
    const evenCases = even.map(e => go(0,e,0,1) * 2)
-   console.log(oddCases,evenCases)
+
+
    const answer = getMax(oddCases) > getMax(evenCases) ? getMax(oddCases) : getMax(evenCases)
-   console.log(answer)
-   return answer
+   console.log(n < 2 ? 1 : answer)
+   return n < 2 ? 1 : answer
 }
 
-const f = ["abcdcba","abacdedc","hfsfeeeefsfa","asdffffffdsya","aa"]
+const f = ["abcdcba","levelevel","hfsfeeeefsfa","asdffffffdsya","aa","i","abcde"]
 f.forEach(e => solution(e))
