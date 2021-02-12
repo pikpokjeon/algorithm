@@ -25,8 +25,8 @@
 // 배열의 첫 번째 원소와 마지막 원소는 반드시 숫자이며, 숫자와 연산자가 항상 번갈아가며 들어있습니다.
 // 입출력 예
 // arr	result
-// [1, -, 3, +, 5, -, 8]	1
-// [5, -, 3, +, 1, +, 2, -, 4]	3
+// [1, -, 3, +, 5, -, 8]	1  7-4   0,2,4,6 [0,2][2,4][4,6]
+// [5, -, 3, +, 1, +, 2, -, 4]	3  9-5   0,2,4,6,8  [0,2][2,4][4,6][6,8]
 // 입출력 예시
 // 입출력 예 #1
 // 위의 예시와 같이 (1-(3+(5-8))) = 1 입니다.
@@ -37,12 +37,54 @@
 function solution(arr) {
    let answer = 1;
    const n = arr.length
-   let memo = Array(n).fill(-1)
-   const go = (i,num, memo) =>
+   const nc = Math.round(n/2)
+   const nums = arr.filter( e => {if(Number(e) > -1) return Number(e)}).map( e => Number(e))
+   const cal = arr.filter( e => {if(e === '+' || e === '-') return e})
+   let memo = Array(n).fill([]).map( e => [...Array(n).fill(-1)])
+   let mm = Array(n).fill(-1)
+   let mm2 = Array(n).fill(-1)
+   let orderMemo = Array(cal.length).fill(-1)
+   let order = []
+   const go = (i,num, memo, start, end) =>
+   {
+      
+   }
+   //arr 레퍼런스를 가지고 푸쉬함,. 동시성
+   const pos = (i,arr) =>
+   {
+      console.log(i,'번째')
+      console.log('생성배열',arr,)
+      console.log('오더배열',order,'\n')
+      if(arr.length === cal.length)
+      {
+         console.log(i,'arr',arr)
+         order.push(arr)
+         console.log(i,'orders',order)
+      }
+         for(let k = 0; k < cal.length ; k ++)
+         {
+            if(orderMemo[k]< 0)
+            {
+            orderMemo[k] = 1
+            arr.push(k)
+            pos(i+1,arr)
+            arr.pop()
+            orderMemo[k] = -1
+            
+         }
+      }
+      // return total
+   }
+   // const a = Array.from(Array(cal.length).keys()).map( e => pos(e,[]))
+   const a = pos(0,[])
+   console.log(order)
+
+   mm[1] = (mm2[0] < 0)? nums[1] + nums[2] : mm2[0] + nums[1]
+   for(let i = 0; i <n; i++)
    {
 
    }
-   
+   console.log(nums,cal)
 
 
    return answer;
