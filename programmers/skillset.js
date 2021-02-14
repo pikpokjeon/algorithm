@@ -29,6 +29,7 @@ function solution (s,t)
    t.map(e =>
       {
          let arr=[]
+      })
 
   
 }

@@ -123,12 +123,31 @@ function solution(arr) {
                count += 1
 
             }
-            else if (aa > -1 && aa !== false)
-            {
-               console.log('2')
+            // else if (aa > -1 && aa !== false)
+            // {
+            //    console.log('2')
                
-               acc[val] = exec(c,n,curr)
-               curr = exec(c,n,curr)
+            //    acc[val] = exec(c,n,curr)
+            //    curr = exec(c,n,curr)
+            // }            
+            else if (aa > -1 )
+            {
+               
+               console.log(a,n,curr)
+               console.log('3')
+               if(aa === false)
+               {
+                  acc[val] = exec(c,curr,n)
+                  curr = exec(c,curr,n)
+                  
+               }
+               else
+               {
+                  console.log('aaa')
+                  acc[val] = exec(c,aa,n)
+                  curr = exec(c,n,aa)
+
+               }
             }
             else if ( a > -1 )
             {
@@ -198,12 +217,8 @@ function solution(arr) {
                }
                else
                {
-                  console.log('3-2')
-
-                  acc[val] = exec(c,aa,n)
-                  curr = exec(c,aa,n)
-                  count += 1
-
+                  acc[val] = exec(c,a,nn)
+                  curr = exec(c,n,a)
 
                }
 
