@@ -91,37 +91,44 @@ function solution(arr) {
       // mm[2] = (mm[3] < 0)? nums[2] + nums[3] : mm[3] + nums[2]
       let answer = 0
       let curr = 0
+      let count = 0
       for(let k = 0; k < order[i].length; k++)
       {
       console.log('--------------------')
 
          // console.log(cal[i],cal,i)
+         
          console.log(order[i])
          // console.log(cal[order[i][k]])
          const val = order[i][k]
          // console.log(i,k,val)
-         let [a,aa,n,nn,c] = [acc[val],acc[val+1],nums[val],nums[val+1],cal[order[i][k]]]
+         let [ba,a,aa,n,nn,c] = [acc[val-1],acc[val],acc[val+1],nums[val],nums[val+1],cal[order[i][k]]]
          console.log('val : ',val)
-         if(acc[val-1] || acc[val] || acc[val+1])
+         console.log('acc',acc,acc[val+1])
+         if(acc[val-1] !== false  || acc[val] !== false || acc[val+1] !== false)
          {
             if(!acc[val] && acc[val-1] && acc[val+1])
             {
                console.log('super')
-               acc[val] = exec(c,a-1,aa)
-               cirr = exec(c,a-1,aa)
+               acc[val] = exec(c,acc[val-1],aa)
+               cirr = exec(c,acc[val-1],aa)
+               count += 1
+
             }
             else if(acc[val-1]  && acc[val] )
             {
                console.log('1')
                acc[val] = exec(c,a,aa)
                curr=  exec(c,a-1,aa)
+               count += 1
+
             }
             else if (aa > -1 && aa !== false)
             {
                console.log('2')
                
-               acc[val] = exec(c,n,aa)
-               curr = exec(c,n,aa)
+               acc[val] = exec(c,n,curr)
+               curr = exec(c,n,curr)
             }
             else if ( a > -1 )
             {
@@ -129,14 +136,74 @@ function solution(arr) {
                console.log('3')
                if(a === false)
                {
-                  acc[val] = exec(c,curr,nn)
-                  curr = exec(c,curr,nn)
+
+                  
+                  if( count === 0 )
+                  {
+                     console.log('3-11')
+                     acc[val] = exec(c,n,nn)
+                     curr = exec(c,n,nn)
+                     count += 1
+                  }
+                  else if ( aa === false)
+                  {
+                     console.log(ba)
+
+                     if(ba !== false)
+                     {
+                        console.log('3-110')
+                        acc[val] = exec(c,nn,ba)
+                        curr = exec(c,nn,ba)
+                        count += 1
+                     }
+                     else
+                     {                     
+                        console.log('3-12')
+                     acc[val] = exec(c,n,nn)
+                     curr = exec(c,n,nn)
+                     count += 1
+                  }
+                  }
+                  else if(count > 0)
+                  {
+                     if(acc[val-1] !== false)
+                     {
+                     console.log('3-13')
+
+                        acc[val] = exec(c,nn,a)
+                        curr = exec(c,nn,a)
+                        count += 1
+                     }
+                     else
+                     {
+                     console.log('3-14')
+
+                    console.log('3-1',curr)
+                     acc[val] = exec(c,n,curr)
+                     curr = exec(c,n,curr)
+                     count += 1
+                     }
+
+
+                  }
+                  else
+                  {
+
+                     console.log('3-11')
+                     acc[val] = exec(c,n,nn)
+                     curr = exec(c,n,nn)
+                     count += 1
+                  }
                   
                }
                else
                {
-                  acc[val] = exec(c,a,nn)
-                  curr = exec(c,n,aa)
+                  console.log('3-2')
+
+                  acc[val] = exec(c,aa,n)
+                  curr = exec(c,aa,n)
+                  count += 1
+
 
                }
 
@@ -148,6 +215,8 @@ function solution(arr) {
 
                acc[val] = exec(c,n,nn)
                curr = exec(c,n,nn)
+               count += 1
+
             }
          }
          else
@@ -156,11 +225,14 @@ function solution(arr) {
             
             acc[val] = exec(c,n,nn)
             curr = exec(c,n,nn)
+            count += 1
+
 
          }
          if(k === order[i].length - 1)
          {
-
+            console.log('answer   >',acc[val])
+            curr = 0
       
          }
          console.log(curr,'<---------')
