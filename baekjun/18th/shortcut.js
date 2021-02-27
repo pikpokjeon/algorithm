@@ -46,28 +46,32 @@ for(let i = 0; i < input.length; i++)
     input[i] = input[i].split(' ').map( e=> 
         {   
             // console.log('e',e)
-            if(allkey.indexOf(e) > 0 ) return
-            e.split('').map( a => 
+            let st = ''
+            if(allkey.indexOf(e) > 0 ) return e
+            e = e.split('').map( a => 
                 {
                     const check = sc.indexOf(a.toUpperCase()) || sc.indexOf(a.toLowerCase())
-                    console.log(a,check)
                     if(check < 0 && !isRegistered)
                     {
                         console.log(a)
                         sc += a
                         isRegistered = true
                         what = i
+                        a = '['+ a + ']'
+                        return a
                     }
+                    return a
                 })
-            console.log(sc,what)
             allkey += input[what]
+            return e
             
             
         }
     )
-    console.log(allkey)
+    // console.log(allkey)
 
-    console.log(input[i].join(''))
+    // console.log(input[i].join(''))
+    console.log(input)
 }
 // 단축키로 등록하지 못하면 그낭 놔둔다
 
