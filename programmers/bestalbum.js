@@ -68,5 +68,5 @@ function solution(genres, plays) {
 }
 
 
-const [a,b] = [["classic", "pop", "classic", "classic", "pop"],[500, 2500, 150, 800, 2500]]
+const [a,b] = [["classic", "pop", "classic", "classic", "pop","classic"],[500, 2500, 150, 800, 2500,500]]
 solution(a,b)
