@@ -46,91 +46,136 @@
 // 이 경우 어떻게 문자열을 잘라도 압축되지 않으므로 가장 짧은 길이는 17이 됩니다.
 
 function solution(s) {
-    let ss = s.split('')
-    let curr =''
+    let wordA = s.split('')
+    let cur = ''
     let acc = ''
+    let idx = -1
+    let o = []
     let c = 0
-    let o =[]
-    let idx=-1
-    for(let i=0;i<ss.length;i++)
-    {
-        if(s.includes(acc))
-            {
-                // console.log('yes',acc)
-            }
-        if(curr !== ss[i])
-        {
-            acc+= ss[i]
-            curr = ss[i]
-            o.push([curr,c])
-            c = 0
-            idx+=1
+    console.log(s)
+
+    const jequi = (i,idx,str)=> {
+        console.log(cur,wordA[i])
+        if(i >= wordA.length) return
+        if(cur !== wordA[i]){
+            acc += wordA[i]
+            cur = wordA[i]
+
         }
-        o[idx][1]+=1
-        
-        
-        
-    }
-    let temp =''
-    let rest =''
-    let ct = 0
-    for(let j =0; j <o.length; j++)
+        if(wordA[i] === acc[idx])
         {
-            if(o[j][0] === temp[0])
-            {
-                ct += 1
-                o.push([temp,ct])
-                ct = 0
-                temp +=o[j][0] 
+            console.log(acc[idx])
+            return jequi(i+1,idx+1,str)
+        }else {
+            acc = ''
+            return jequi(i+1,0,str)
+        }
+    }
+    jequi(0,0,'')
+    for(let i = 0; i<wordA.length; i++)
+    {
+        // if(s.includes(acc))
+        // {
+        //     console.log(acc)
+        // }
+        // if(cur !== wordA[i])
+        // {
+        //        cur = wordA[i]
+        //         acc += wordA[i] 
+        //         o.push([acc,c])
+        //         idx += 1
+
+        //         // wordA.shift()
+        // }
+        // o[idx][1]+=1
+        // console.log(cur,acc,o)
+    
+    }
+    // let ss = s.split('')
+    // let curr =''
+    // let acc = ''
+    // let c = 0
+    // let o =[]
+    // let idx=-1
+    // for(let i=0;i<ss.length;i++)
+    // {
+    //     if(s.includes(acc))
+    //         {
+    //             // console.log('yes',acc)
+    //         }
+    //     if(curr !== ss[i])
+    //     {
+    //         acc+= ss[i]
+    //         curr = ss[i]
+    //         o.push([curr,c])
+    //         c = 0
+    //         idx+=1
+    //     }
+    //     o[idx][1]+=1
+        
+        
+        
+    // }
+    // let temp =''
+    // let rest =''
+    // let ct = 0
+    // for(let j =0; j <o.length; j++)
+    //     {
+    //         if(o[j][0] === temp[0])
+    //         {
+    //             ct += 1
+    //             o.push([temp,ct])
+    //             ct = 0
+    //             temp +=o[j][0] 
                 
-            }
+    //         }
              
 
-            if(o[j][1] === 1)
-                {
+    //         if(o[j][1] === 1)
+    //             {
  
-                if (o[j][0] !== temp[0])
-                    {
+    //             if (o[j][0] !== temp[0])
+    //                 {
 
                         
-                        temp += o[j][0]
-                        if(o[j][0] === temp[0])
-                            {
-                                ct+=1
-                            }
-                        rest += o[j][0]  
-                    }
-                }
+    //                     temp += o[j][0]
+    //                     if(o[j][0] === temp[0])
+    //                         {
+    //                             ct+=1
+    //                         }
+    //                     rest += o[j][0]  
+    //                 }
+    //             }
               
             
-        }
-    console.log(o)
-    let all = [] 
-    let tp = ''
-    for(let k=0; k < o.length; k++)
-        {  
-            if(o[k][1] === 1 && o[k][0].length === 1)
-                {
-                    tp += o[k][0]
-                    // continue
-                }
-             else if (o[k][1] > 1 && o[k][0].length === 2)
-                 {
+    //     }
+    // console.log(o)
+    // let all = [] 
+    // let tp = ''
+    // for(let k=0; k < o.length; k++)
+    //     {  
+    //         if(o[k][1] === 1 && o[k][0].length === 1)
+    //             {
+    //                 tp += o[k][0]
+    //                 // continue
+    //             }
+    //          else if (o[k][1] > 1 && o[k][0].length === 2)
+    //              {
                      
-                     tp += 2
-                     tp += o[k][0]
-                     // continue
-                 }
-            else if(o[k][1] > 1 && o[k][0].length === 3)
-                {
-                     tp += 3
-                     tp += o[k][0]
-                }
+    //                  tp += 2
+    //                  tp += o[k][0]
+    //                  // continue
+    //              }
+    //         else if(o[k][1] > 1 && o[k][0].length === 3)
+    //             {
+    //                  tp += 3
+    //                  tp += o[k][0]
+    //             }
             
-                all.push(tp)
-                tp=''
-        }
-    console.log(all)
+    //             all.push(tp)
+    //             tp=''
+    //     }
+    // console.log(all)
         console.log('------------------')
 }
 
