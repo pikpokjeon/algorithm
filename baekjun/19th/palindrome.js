@@ -12,59 +12,69 @@
 
 // 문자열이 주어졌을 때, 팰린드롬으로 만들기 위해 필요한 연산의 최솟값을 출력하는 프로그램을 작성하시오.
 
-let input = 'nodong'.trim().split('')
+let input = 'ndong'.trim().split('')
 const len = input.length
 const half = Math.floor(len/2)
 let memo = Array(len-1).fill(-1)
+let amemo = Array(len-1).fill(-1)
 const jequi = (num,i,add,arry,count,diff,hc) =>
 {
     if(i > hc)
     {
+        console.log(diff)
         memo[num] = count
-        return
+        amemo[num] = diff
+        return diff
     }
     if(arry[num-i] === arry[num+i+add])
     {
         return jequi(num,i+1,add,arry,count,diff,hc)
     }
+    if(!arry[num-i] || !arry[num+i+add]) return diff
     diff.push([arry[num-i],arry[num+i+add]])
     return jequi(num,i+1,add,arry,count+1,diff,hc)
 }
+let diffArry
 for(let i = 1; i<input.length;i++)
 {
     if(input[i-1]=== input[i+1])
     {
-        jequi(i,1,0,input,0,[],input.length-1)
+        diffArry=jequi(i,1,0,input,0,[],input.length-1)
     }
     else if (input[i]  === input[i-1])
     {
-        jequi(i,0,1,input,0,[],input.length-1)
+        diffArry=jequi(i,0,1,input,0,[],input.length-1)
+    }else if (input[i-1] === input[i+2]){
+        diffArry=jequi(i,0,1,input,0,[],input.length-1)
+
     }
 }
 memo = memo.filter(e => e> 0)
-console.log(Math.min.apply(null,memo))
+amemo = amemo.filter( e => e !== -1).flat()
+console.log(amemo)
+// console.log(Math.min.apply(null,memo))
 
 
 // console.log(diffArry)
-// const sortArry = diffArry.map(e=> e.sort()).reduce((acc,cur,idx)=>
-// {
+const sortArry = amemo.map(e=> e.sort()).reduce((acc,cur,idx)=>
+{
 
-//     const i = acc[0].length -1
-//     if(idx === 0)
-//     {
-//     acc[0].push(cur)
-//     return acc
-//     }
-//     if( cur[0] === acc[0][i][0] || cur[1] === acc[0][i][1])
-//     {
-//         acc[2] +=1 
-//         return acc
-//     }
-//     acc[0].push(cur)
-//     acc[1] +=1
-//     return acc
+    const i = acc[0].length -1
+    if(idx === 0)
+    {
+    acc[0].push(cur)
+    return acc
+    }
+    if( cur[0] === acc[0][i][0] || cur[1] === acc[0][i][1])
+    {
+        acc[1] +=1 
+        return acc
+    }
+    acc[0].push(cur)
+    acc[1] +=1
+    return acc
 
-// },[[],0,0])
-// console.log(sortArry)
+},[[],0])
+console.log(sortArry[1])
 // const flatDiff = diffArry.flatMap(e => e).sort()
 // console.log(flatDiff)
