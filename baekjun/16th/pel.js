@@ -1,12 +1,10 @@
-let input = `18
-1 1 1 2 1 1 2 3 3 2 1 1 1 1 2 2 1 1
-6
-1 2
-2 6
-3 9
-7 10
-8 16
-13 18`.toString().trim().split('\n')
+let input = `7
+1 2 1 3 1 2 1
+4
+1 3
+2 5
+3 3
+5 7`.toString().trim().split('\n')
 
 const [n,t] = [input[0],input[2]].map( _ => Number(_))
 const nums = input[1].split(' ').map( _ => Number(_))
@@ -15,7 +13,7 @@ const go = (i,center,a) =>
 {
    const [end,start] = [center+i+a,center-i]
    if ( end > n || start  < 0) return 
-   if ( memo[start][end] < 1 && nums[start] === nums[end])
+   else if ( memo[start][end] < 1 && nums[start] === nums[end]) //2022-09-12
    {
       memo[start][end] = 1
       return go(i+1,center,a)
